@@ -20,7 +20,10 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isMenuOpen, setMenuOpen] = useState(false);
-
+  const [isChecked, setIsChecked] = useState(false);
+  const toggleCheckbox = () => {
+    setIsChecked(!isChecked);
+  };
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
@@ -47,7 +50,25 @@ export default function Login() {
           placeholder="Parola"
           onChangeText={(text) => setPassword(text)}
         />
+        <TouchableOpacity
+          style={[log.checkboxContainer, log.firstContainer]}
+          onPress={toggleCheckbox}
+        >
+          <View style={[log.checkbox, isChecked ? log.checked : null]} />
+          <Text style={log.label}>Acces rapid</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={log.checkboxContainer}
+          onPress={toggleCheckbox}
+        >
+          <View style={[log.checkbox, isChecked ? log.checked : null]} />
+          <Text style={log.label}>
+            Sunt de acord cu politica de confidentialitate prestata de OTP
+            Internet & Mobile Banking
+          </Text>
+        </TouchableOpacity>
       </View>
+
       {isMenuOpen && (
         <TouchableOpacity
           style={log.overlay} // Adaugă un TouchableOpacity pentru a manipula închiderea meniului
@@ -114,22 +135,21 @@ const log = StyleSheet.create({
 
   input: {
     marginVertical: 10,
-    width: 250,
+    width: "100%",
     height: 40,
     borderColor: "gray",
-    borderRadius: 10,
-    borderWidth: 1,
-    textAlign: "center",
+    borderBottomWidth: 1,
   },
   intro: {
-    flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-    padding: 15,
+
+    height: "auto",
+    padding: 20,
+    width: "100%",
   },
   header: {
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 20,
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 10,
@@ -175,6 +195,7 @@ const log = StyleSheet.create({
     marginRight: 10,
   },
   block: {
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 8,
@@ -191,5 +212,27 @@ const log = StyleSheet.create({
   },
   primeList: {
     color: "#52AE2F",
+  },
+  checkboxContainer: {
+    marginVertical: 5,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  checkbox: {
+    width: 20,
+    height: 20,
+    borderWidth: 2,
+    borderColor: "#B8B8B8",
+    borderRadius: 5,
+    marginRight: 10,
+  },
+  checked: {
+    backgroundColor: "#52AE2F",
+  },
+  label: {
+    fontSize: 14,
+  },
+  firstContainer: {
+    marginTop: 30,
   },
 });
