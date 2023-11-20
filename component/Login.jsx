@@ -21,6 +21,10 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [acces, setAcces] = useState(false);
+  const acordaAcces = () => {
+    setAcces(!acces);
+  };
   const toggleCheckbox = () => {
     setIsChecked(!isChecked);
   };
@@ -52,9 +56,9 @@ export default function Login() {
         />
         <TouchableOpacity
           style={[log.checkboxContainer, log.firstContainer]}
-          onPress={toggleCheckbox}
+          onPress={acordaAcces}
         >
-          <View style={[log.checkbox, isChecked ? log.checked : null]} />
+          <View style={[log.checkbox, acces ? log.checked : null]} />
           <Text style={log.label}>Acces rapid</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -67,6 +71,17 @@ export default function Login() {
             Internet & Mobile Banking
           </Text>
         </TouchableOpacity>
+        <Text style={log.btn}>Autentificare</Text>
+      </View>
+      <View style={log.footer}>
+        <View style={log.dual}>
+          <Image style={log.curs} source={exchange} resizeMode="contain" />
+          <Text style={log.green}>Curs Valutar</Text>
+        </View>
+        <View style={log.dual}>
+          <Image style={log.curs} source={atm} resizeMode="contain" />
+          <Text style={log.green}>Sucursale si ATM</Text>
+        </View>
       </View>
 
       {isMenuOpen && (
@@ -132,7 +147,29 @@ const log = StyleSheet.create({
     width: "100%",
     backgroundColor: "#fff",
   },
-
+  footer: {
+    justifyContent: "space-around",
+    alignItems: "center",
+    flexDirection: "row",
+   top:80,
+    width: "100%",
+  
+    height: "auto",
+  },
+  dual: {
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    width: 100,
+  },
+  green: {
+    color: "#52AE2F",
+    textAlign: "center",
+  },
+  curs: {
+    width: 50,
+    height: 50,
+  },
   input: {
     marginVertical: 10,
     width: "100%",
@@ -142,7 +179,7 @@ const log = StyleSheet.create({
   },
   intro: {
     justifyContent: "center",
-
+    marginTop:50,
     height: "auto",
     padding: 20,
     width: "100%",
@@ -234,5 +271,14 @@ const log = StyleSheet.create({
   },
   firstContainer: {
     marginTop: 30,
+  },
+  btn: {
+    backgroundColor: "#52AE2F",
+    marginTop: 30,
+    textAlign: "center",
+    paddingVertical: 10,
+    borderRadius: 50,
+    color: "#fff",
+    fontSize: 16,
   },
 });
