@@ -51,6 +51,7 @@ export default function Login() {
         <TextInput
           style={log.input}
           value={password}
+          secureTextEntry={true}
           placeholder="Parola"
           onChangeText={(text) => setPassword(text)}
         />
